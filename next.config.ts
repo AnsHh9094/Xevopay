@@ -1,7 +1,19 @@
 import type { NextConfig } from "next";
 
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  swMinify: true,
+  disable: false,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+});
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: false, /* Disabled to prevent double-mount issues with html5-qrcode in dev */
 };
 
-export default nextConfig;
+export default withPWA(nextConfig);
